@@ -11,15 +11,12 @@ then
   echo "관리자에게 문의하세요"
   exit 1
 fi
-
 command=$1
-
 if [[ $command = "grader" ]]
 then
   echo "채점 프로그램 설치 기능은 아직 구현되지 않았습니다."
   exit 1
 fi
-
 if [[ $command != "task" ]]
 then
   echo "지원하지 않는 명령어입니다."
@@ -35,6 +32,7 @@ task_repo="${REPO}/${task}"
 tarball_repo="${task_repo}/testcase/${TARBALL}"
 tarball_local="${download_path}/${TARBALL}"
 
+# Download Testcases
 rm -rf $download_path
 mkdir -p $download_path
 wget -nv -O $tarball_local $tarball_repo
