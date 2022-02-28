@@ -48,10 +48,12 @@ echo "${count}개 테스트 케이스를 이용한 채점을 시작합니다"
 # Iterate over input files
 for input in `ls ${directory}/*.in`
 do
-    # Generate necessary 
+    # Generate necessary variables
     i=$(($i + 1))
     output=`echo $input | cut -d "." -f2 | cut -d "/" -f5`
     output="${output}.out"
+
+    # Generate Output and Compare
     echo "${count}개 중 ${i}번째 케이스 채점 중..."
     timeout ${timeout} python3 ${task}.py < ${input} > "./${output_directory}/${output}"
     diff -Z "${directory}/${output}" "./${output_directory}/${output}"
@@ -65,5 +67,6 @@ do
     fi
 done
 
+# No error means Successful Entry
 echo "통과했습니다!"
 exit 0
