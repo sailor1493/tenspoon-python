@@ -33,7 +33,7 @@ then
   echo "관리자에게 문의하세요."
   exit 1
 fi
-if [[ $# -ne 2]]
+if [[ $# -ne 2 ]]
 then
   echo "task 명령어는 2개의 명령인자를 받습니다."
   echo "사용법: installer.sh task <과제명>"
