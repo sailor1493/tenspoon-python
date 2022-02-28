@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output_directroy=my_output
+output_directory="my_output"
 timeout=1
 
 if [[ $# -ne 1 ]]
@@ -17,8 +17,8 @@ count=`ls ${directory}/*.in | wc -l`
 i=0
 
 # Reset Grading Directory
-rm -rf $output_directroy
-mkdir $output_directroy
+rm -rf $output_directory
+mkdir $output_directory
 
 
 echo "${count}개 테스트 케이스를 이용한 채점을 시작합니다"
@@ -30,6 +30,7 @@ do
     output=`echo $input | cut -d "." -f2 | cut -d "/" -f5`
     output="${output}.out"
     echo "${count}개 중 ${i}번째 케이스 채점 중..."
-    echo "timeout ${timeout} python3 ${task}.py < ${input} > ./my_output/${output}"
+    timeout ${timeout} python3 ${task}.py < ${input} > "./${output_directory}/${output}"
+    diff -Z "${directory}/${output}" "./${output_directory}/${output}"
 done
 exit 0
