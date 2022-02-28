@@ -23,6 +23,7 @@ then
   grade_local="./tools/${GRADER}"
   rm -f $grade_local
   wget -nv -O $grade_local $grade_repo
+  chmod +x $grade_local
   echo "채점 프로그램이 다운로드되었습니다."
   exit 1
 fi
